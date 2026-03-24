@@ -2,6 +2,7 @@ from utils import SENSORS_TABLE, json_response, parse_body, path_param, now_utc_
 
 import json
 
+
 def lambda_handler(event, context):
     try:
         sid = path_param(event, "sid")

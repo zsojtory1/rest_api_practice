@@ -4,3 +4,7 @@
 
 - Documentation
 - IaC for AWS Services
+- IAM Roles
+- API Gateway Authorizer
+- Logging
+- DELETE endpoints

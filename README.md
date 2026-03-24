@@ -12,3 +12,4 @@
 - Lambda layer for utils
 - Reduce the number of lambdas, using routing based on httpMethod and Resource
 - Schema checks
+- Wrapper and/or Front-end

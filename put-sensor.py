@@ -12,6 +12,10 @@ def lambda_handler(event, context):
         body = parse_body(event)
         country = body.get("country")
         city = body.get("city")
+        
+        if not country or not city:
+            return json_response(422, {"error": "country and city must be provided in request payload"})
+        
         now = now_utc_iso()
 
         existing = SENSORS_TABLE.get_item(

@@ -4,7 +4,7 @@
 
 - Documentation
 - IaC for AWS Services
-- IAM Roles
+- IAM Roles - not individually configured
 - API Gateway Authorizer
 - Logging
 - DELETE endpoints
@@ -14,3 +14,4 @@
 - Schema checks
 - Wrapper and/or Front-end
 - Unit + Integration testing
+- Throttling + Quota

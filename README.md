@@ -9,3 +9,4 @@
 - Logging
 - DELETE endpoints
 - TTL for old readings
+- Lambda layer for utils

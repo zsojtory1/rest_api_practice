@@ -8,3 +8,4 @@
 - API Gateway Authorizer
 - Logging
 - DELETE endpoints
+- TTL for old readings

@@ -6,6 +6,8 @@ REST API hosted in AWS with serverless Lambdas handling logic and storage in Dyn
 ## API Endpoints
 Base URL: https://53v89bd7sf.execute-api.eu-north-1.amazonaws.com/test
 
+Very rudamentary auto generated Postman documentation: https://documenter.getpostman.com/view/53467846/2sBXiknB9h
+
 All endpoints require an API key in the request header (Attached in email).
 
 - GET /sensors
@@ -42,9 +44,9 @@ All endpoints require an API key in the request header (Attached in email).
     - group_by: 'sensor' or 'none'
 
 ## TODO List
-- Documentation
+- Better documentation
 - IaC for AWS Services + CICD
-- IAM Roles - not individually configured
+- IAM Roles and Policies - not individually configured
 - Logging - Monitoring and Alarming in CloudWatch
 - DELETE endpoints
 - TTL for old readings

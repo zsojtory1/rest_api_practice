@@ -13,7 +13,7 @@
 - Schema checks
 - Wrapper and/or Front-end
 - Unit + Integration testing
-- Throttling + Quota
+- API Throttling + Quota
 - Custom domain name
 - Abstract internal errors
 - Pagination for get-sensors

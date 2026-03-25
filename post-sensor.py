@@ -25,15 +25,12 @@ def lambda_handler(event, context):
             "sid": sid,
             "country": country,
             "city": city,
-            "updatedAt": now,
+            "createdAt": now
         }
 
         if existing:
-            item["createdAt"] = existing["createdAt"]
-            SENSORS_TABLE.put_item(Item=item)
-            return json_response(200, item)
+            return json_response(422, {"error": "sid already exists"})
 
-        item["createdAt"] = now
         SENSORS_TABLE.put_item(Item=item)
         return {
             "statusCode": 201,

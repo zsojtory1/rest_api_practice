@@ -61,9 +61,6 @@ def lambda_handler(event, context):
             sensors = list_all_sensors()
             sids = [s["sid"] for s in sensors]
 
-        if group_by not in {"sensor", "none"}:
-            return json_response(422, {"error": "group_by must be 'sensor' or 'none'"})
-
         if group_by == "sensor":
             rows = []
             for sensor in sensors:

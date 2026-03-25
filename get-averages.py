@@ -1,4 +1,5 @@
 from collections import defaultdict
+from decimal import Decimal
 
 from utils import (
     ALLOWED_METRICS,
@@ -19,7 +20,7 @@ def aggregate(metrics, readings):
         values = item.get("metrics", {})
         for metric in metrics:
             value = values.get(metric)
-            if isinstance(value, (int, float)):
+            if isinstance(value, (Decimal)):
                 sums[metric] += float(value)
                 counts[metric] += 1
 

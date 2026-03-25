@@ -3,10 +3,9 @@
 ## TODO List
 
 - Documentation
-- IaC for AWS Services
+- IaC for AWS Services + CICD
 - IAM Roles - not individually configured
-- API Gateway Authorizer
-- Logging
+- Logging - Monitoring and Alarming in CloudWatch
 - DELETE endpoints
 - TTL for old readings
 - Lambda layer for utils
@@ -15,3 +14,5 @@
 - Wrapper and/or Front-end
 - Unit + Integration testing
 - Throttling + Quota
+- Custom domain name
+- Abstract internal errors

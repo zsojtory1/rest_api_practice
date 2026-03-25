@@ -49,11 +49,11 @@ def parse_iso8601(value, field_name):
     return dt.astimezone(timezone.utc)
 
 
-def require_sensor(sensor_id):
-    resp = SENSORS_TABLE.get_item(Key={"sensorId": sensor_id})
+def require_sensor(sid):
+    resp = SENSORS_TABLE.get_item(Key={"sid": sid})
     item = resp.get("Item")
     if not item:
-        raise KeyError(f"Sensor '{sensor_id}' not found")
+        raise KeyError(f"Sensor '{sid}' not found")
     return item
 
 

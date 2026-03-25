@@ -76,3 +76,18 @@ def validate_metrics(metrics_obj):
 
 def iso_z(dt):
     return dt.replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def list_all_sensors():
+    items = []
+    resp = SENSORS_TABLE.scan()
+    items.extend(resp.get("Items", []))
+    while "LastEvaluatedKey" in resp:
+        resp = SENSORS_TABLE.scan(ExclusiveStartKey=resp["LastEvaluatedKey"])
+        items.extend(resp.get("Items", []))
+    return items
+
+
+def query_param(event, name, default=None):
+    params = event.get("queryStringParameters") or {}
+    return params.get(name, default)

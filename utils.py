@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 
 import boto3
+from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource("dynamodb")
 SENSORS_TABLE = dynamodb.Table(os.environ["SENSORS_TABLE"])
@@ -86,3 +87,41 @@ def list_all_sensors():
         resp = SENSORS_TABLE.scan(ExclusiveStartKey=resp["LastEvaluatedKey"])
         items.extend(resp.get("Items", []))
     return items
+
+
+def query_param(event, name, default=None):
+    params = event.get("queryStringParameters") or {}
+    return params.get(name, default)
+
+
+def query_readings(sid, from_s=None, to_s=None):
+    if from_s and to_s:
+        key_expr = Key("sid").eq(sid) & Key(
+            "recordedAt").between(from_s, to_s)
+    else:
+        key_expr = Key("sid").eq(sid)
+
+    items = []
+    resp = READINGS_TABLE.query(KeyConditionExpression=key_expr)
+    items.extend(resp.get("Items", []))
+    while "LastEvaluatedKey" in resp:
+        resp = READINGS_TABLE.query(
+            KeyConditionExpression=key_expr,
+            ExclusiveStartKey=resp["LastEvaluatedKey"],
+        )
+        items.extend(resp.get("Items", []))
+    return items
+
+
+def validate_range(from_s, to_s):
+    from_dt = parse_iso8601(from_s, "from")
+    to_dt = parse_iso8601(to_s, "to")
+
+    if from_dt >= to_dt:
+        raise ValueError("'from' must be earlier than 'to'")
+
+    days = (to_dt - from_dt).total_seconds() / 86400
+    if days < 1 or days > 31:
+        raise ValueError("date range must be between 1 and 31 days")
+
+    return iso_z(from_dt), iso_z(to_dt)

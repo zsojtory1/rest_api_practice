@@ -16,3 +16,4 @@
 - Throttling + Quota
 - Custom domain name
 - Abstract internal errors
+- Pagination for get-sensors

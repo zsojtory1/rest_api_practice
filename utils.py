@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime, timezone
+from decimal import Decimal
 
 import boto3
 
@@ -69,7 +70,7 @@ def validate_metrics(metrics_obj):
     for key, value in metrics_obj.items():
         if not isinstance(value, (int, float)):
             raise ValueError(f"metric '{key}' must be numeric")
-        normalized[key] = float(value)
+        normalized[key] = Decimal(str(value))
     return normalized
 
 

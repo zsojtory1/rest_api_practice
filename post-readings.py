@@ -50,7 +50,7 @@ def lambda_handler(event, context):
                     "recordedAt": recorded_at,
                     "metrics": metrics,
                     "createdAt": item["createdAt"],
-                }
+                }, default=str
             ),
         }
 

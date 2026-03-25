@@ -86,8 +86,3 @@ def list_all_sensors():
         resp = SENSORS_TABLE.scan(ExclusiveStartKey=resp["LastEvaluatedKey"])
         items.extend(resp.get("Items", []))
     return items
-
-
-def query_param(event, name, default=None):
-    params = event.get("queryStringParameters") or {}
-    return params.get(name, default)

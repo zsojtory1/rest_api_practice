@@ -67,6 +67,8 @@ def lambda_handler(event, context):
             rows = []
             for sensor in sensors:
                 readings = query_readings(sensor["sid"], from_s, to_s)
+                print(readings)
+                print(metrics)
                 if not from_s and not to_s and readings:
                     readings = [max(readings, key=lambda x: x["recordedAt"])]
 

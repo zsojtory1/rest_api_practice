@@ -54,11 +54,11 @@ def lambda_handler(event, context):
             ),
         }
 
-    except KeyError as exc:
-        return json_response(404, {"error": str(exc)})
-    except ValueError as exc:
-        return json_response(422, {"error": str(exc)})
-    except Exception as exc:
-        if "ConditionalCheckFailedException" in str(exc):
+    except KeyError as e:
+        return json_response(404, {"error": str(e)})
+    except ValueError as e:
+        return json_response(422, {"error": str(e)})
+    except Exception as e:
+        if "ConditionalCheckFailedException" in str(e):
             return json_response(409, {"error": "reading already exists for this sid + recordedAt"})
-        return json_response(500, {"error": str(exc)})
+        return json_response(500, {"error": str(e)})

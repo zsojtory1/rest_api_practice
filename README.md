@@ -61,3 +61,4 @@ All endpoints require an API key in the request header (Attached in email).
 - Pagination for get-sensors
 - Dynamic metrics
 - Proper API stages
+- Dedicated lambda for API responses
